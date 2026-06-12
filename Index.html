@@ -1,0 +1,1095 @@
+cat > /home/claude/index.html << 'HTMLEOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sk. Shoumik Haque — Software Engineer & Researcher</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0F172A;
+  --navy2:#1E293B;
+  --navy3:#334155;
+  --blue:#2563EB;
+  --blue2:#3B82F6;
+  --blue3:#93C5FD;
+  --blue4:#DBEAFE;
+  --blue5:#EFF6FF;
+  --white:#F8FAFC;
+  --text:#1E293B;
+  --text2:#475569;
+  --text3:#94A3B8;
+  --line:#E2E8F0;
+  --serif:'Space Grotesk',sans-serif;
+  --body:'Inter',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --r:12px;
+  --r2:8px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--text);background:var(--white);line-height:1.65;font-size:15px}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(15,23,42,0.95);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(37,99,235,0.2);
+  padding:0 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  height:64px;
+}
+.nav-logo{
+  font-family:var(--serif);font-size:1.1rem;font-weight:700;
+  color:#fff;letter-spacing:-0.3px;
+}
+.nav-logo span{color:var(--blue2)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{
+  color:var(--blue3);font-size:13px;font-weight:500;
+  text-decoration:none;letter-spacing:0.5px;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:#fff}
+.nav-cta{
+  background:var(--blue);color:#fff;
+  font-size:13px;font-weight:500;
+  padding:8px 20px;border-radius:6px;
+  text-decoration:none;transition:background 0.2s;
+}
+.nav-cta:hover{background:var(--blue2)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:0.3s}
+
+/* ── HERO ── */
+#home{
+  min-height:100vh;
+  background:var(--navy);
+  display:flex;align-items:center;
+  position:relative;overflow:hidden;
+  padding-top:64px;
+}
+.hero-grid{
+  width:100%;max-width:1100px;margin:0 auto;
+  padding:80px 40px;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;align-items:center;
+}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:12px;
+  color:var(--blue2);letter-spacing:2px;
+  text-transform:uppercase;margin-bottom:16px;
+  display:flex;align-items:center;gap:8px;
+}
+.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--blue)}
+.hero-name{
+  font-family:var(--serif);
+  font-size:clamp(2.4rem,4.5vw,3.8rem);
+  font-weight:700;line-height:1.1;
+  color:#fff;letter-spacing:-1px;
+  margin-bottom:16px;
+}
+.hero-name span{color:var(--blue2)}
+.hero-role{
+  font-size:1.1rem;color:var(--blue3);
+  font-weight:300;margin-bottom:24px;
+  min-height:1.8em;
+}
+.cursor{
+  display:inline-block;width:2px;height:1.1em;
+  background:var(--blue2);margin-left:2px;
+  animation:blink 1s infinite;vertical-align:text-bottom;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.hero-bio{
+  color:var(--text3);font-size:15px;line-height:1.75;
+  max-width:460px;margin-bottom:32px;
+}
+.hero-bio strong{color:var(--blue3);font-weight:500}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{
+  background:var(--blue);color:#fff;
+  padding:12px 28px;border-radius:var(--r2);
+  font-weight:500;font-size:14px;text-decoration:none;
+  transition:all 0.2s;border:1.5px solid var(--blue);
+}
+.btn-primary:hover{background:var(--blue2);border-color:var(--blue2)}
+.btn-outline{
+  background:transparent;color:var(--blue3);
+  padding:12px 28px;border-radius:var(--r2);
+  font-weight:500;font-size:14px;text-decoration:none;
+  border:1.5px solid rgba(147,197,253,0.3);
+  transition:all 0.2s;
+}
+.btn-outline:hover{border-color:var(--blue3);color:#fff}
+.hero-stats{
+  display:flex;gap:32px;margin-top:48px;
+  padding-top:32px;border-top:1px solid rgba(255,255,255,0.08);
+}
+.stat-item{text-align:center}
+.stat-num{
+  font-family:var(--serif);font-size:2rem;font-weight:700;
+  color:#fff;line-height:1;
+}
+.stat-num span{color:var(--blue2)}
+.stat-label{font-size:11px;color:var(--text3);margin-top:4px;letter-spacing:0.5px}
+
+/* Hero right — code card */
+.hero-card{
+  background:rgba(30,41,59,0.8);
+  border:1px solid rgba(37,99,235,0.3);
+  border-radius:var(--r);
+  overflow:hidden;
+  box-shadow:0 0 60px rgba(37,99,235,0.15);
+}
+.card-bar{
+  background:rgba(15,23,42,0.8);
+  padding:12px 16px;
+  display:flex;align-items:center;gap:8px;
+  border-bottom:1px solid rgba(37,99,235,0.2);
+}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot-r{background:#FF5F57}
+.dot-y{background:#FEBC2E}
+.dot-g{background:#28C840}
+.card-file{font-family:var(--mono);font-size:11px;color:var(--text3);margin-left:8px}
+.card-body{padding:24px;font-family:var(--mono);font-size:13px;line-height:1.9}
+.c-comment{color:#94A3B8}
+.c-key{color:#93C5FD}
+.c-str{color:#86EFAC}
+.c-num{color:#FCA5A5}
+.c-fn{color:#C4B5FD}
+.c-br{color:#94A3B8}
+
+/* ── SECTIONS ── */
+.section{padding:96px 40px;max-width:1100px;margin:0 auto}
+.section-eyebrow{
+  font-family:var(--mono);font-size:11px;
+  color:var(--blue);letter-spacing:3px;
+  text-transform:uppercase;margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-eyebrow::before{content:'';width:24px;height:1px;background:var(--blue)}
+.section-title{
+  font-family:var(--serif);
+  font-size:clamp(1.8rem,3vw,2.6rem);
+  font-weight:700;color:var(--text);
+  letter-spacing:-0.5px;margin-bottom:48px;
+  line-height:1.2;
+}
+.section-title span{color:var(--blue)}
+
+/* ── ABOUT TABS ── */
+#about{background:#fff;padding:96px 0}
+.about-inner{max-width:1100px;margin:0 auto;padding:0 40px}
+.about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start}
+.about-left{}
+.about-avatar{
+  width:100%;max-width:300px;
+  aspect-ratio:1;
+  border-radius:var(--r);
+  background:linear-gradient(135deg,var(--blue4),var(--blue5));
+  border:2px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  font-size:5rem;margin-bottom:24px;
+}
+.about-contact{display:flex;flex-direction:column;gap:10px}
+.about-contact a{
+  display:flex;align-items:center;gap:10px;
+  font-size:13px;color:var(--text2);text-decoration:none;
+  transition:color 0.2s;
+}
+.about-contact a:hover{color:var(--blue)}
+.about-contact-icon{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--blue5);
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;flex-shrink:0;
+  border:1px solid var(--blue4);
+}
+/* Tabs */
+.tabs{display:flex;gap:0;margin-bottom:32px;border-bottom:2px solid var(--line)}
+.tab-btn{
+  padding:10px 20px;font-size:13px;font-weight:500;
+  color:var(--text3);background:none;border:none;
+  cursor:pointer;position:relative;transition:color 0.2s;
+  font-family:var(--body);
+}
+.tab-btn.active{color:var(--blue)}
+.tab-btn.active::after{
+  content:'';position:absolute;bottom:-2px;left:0;right:0;
+  height:2px;background:var(--blue);border-radius:2px;
+}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.skill-groups{display:flex;flex-direction:column;gap:16px}
+.skill-group-row{display:flex;align-items:flex-start;gap:12px}
+.skill-group-label{
+  font-size:11px;font-weight:600;color:var(--text3);
+  letter-spacing:1px;text-transform:uppercase;
+  width:100px;flex-shrink:0;padding-top:5px;
+}
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px}
+.skill-tag{
+  font-size:12px;background:var(--blue5);
+  color:var(--blue);padding:4px 12px;
+  border-radius:20px;font-weight:500;
+  border:1px solid var(--blue4);
+}
+.skill-tag.ai{background:#F0FDF4;color:#16A34A;border-color:#BBF7D0}
+.skill-tag.ml{background:#FFF7ED;color:#C2410C;border-color:#FED7AA}
+.exp-timeline{display:flex;flex-direction:column;gap:20px}
+.exp-item{
+  display:grid;grid-template-columns:100px 1fr;
+  gap:16px;align-items:start;
+}
+.exp-date{
+  font-family:var(--mono);font-size:11px;
+  color:var(--text3);padding-top:3px;text-align:right;
+}
+.exp-body{}
+.exp-role{font-weight:600;font-size:14px;color:var(--text)}
+.exp-org{font-size:13px;color:var(--blue);margin-top:2px}
+.exp-desc{font-size:13px;color:var(--text2);margin-top:6px;line-height:1.6}
+.edu-list{display:flex;flex-direction:column;gap:20px}
+.edu-item{
+  background:var(--blue5);border-radius:var(--r2);
+  border:1px solid var(--blue4);
+  padding:16px 20px;
+}
+.edu-item.top{border-left:3px solid var(--blue)}
+.edu-inst{font-weight:600;font-size:14px;color:var(--text)}
+.edu-deg{font-size:13px;color:var(--text2);margin-top:2px}
+.edu-meta{font-size:12px;color:var(--text3);margin-top:4px}
+.gpa-pill{
+  display:inline-flex;align-items:center;gap:4px;
+  background:#FEF9C3;color:#A16207;
+  font-size:11px;font-weight:600;
+  padding:2px 10px;border-radius:20px;margin-top:6px;
+}
+
+/* ── RESEARCH ── */
+#research{background:var(--navy);padding:96px 0}
+#research .section{max-width:1100px}
+#research .section-eyebrow{color:var(--blue3)}
+#research .section-title{color:#fff}
+#research .section-title span{color:var(--blue2)}
+.research-grid{display:grid;grid-template-columns:1fr;gap:24px;max-width:680px}
+.research-card{
+  background:rgba(30,41,59,0.7);
+  border:1px solid rgba(37,99,235,0.25);
+  border-radius:var(--r);padding:32px;
+  position:relative;overflow:hidden;
+  transition:border-color 0.3s,transform 0.3s;
+}
+.research-card:hover{
+  border-color:rgba(37,99,235,0.6);
+  transform:translateY(-4px);
+}
+.research-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--blue),var(--blue3));
+}
+.research-status{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--mono);font-size:11px;
+  color:#4ADE80;letter-spacing:1px;
+  margin-bottom:16px;
+}
+.research-status::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:#4ADE80;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.research-title{
+  font-family:var(--serif);font-size:1.15rem;
+  font-weight:700;color:#fff;margin-bottom:12px;
+  line-height:1.3;
+}
+.research-desc{font-size:13px;color:var(--text3);line-height:1.7;margin-bottom:20px}
+.research-tags{display:flex;flex-wrap:wrap;gap:6px}
+.research-tag{
+  font-family:var(--mono);font-size:11px;
+  background:rgba(37,99,235,0.15);
+  color:var(--blue3);padding:3px 10px;
+  border-radius:4px;border:1px solid rgba(37,99,235,0.25);
+}
+.research-sup{
+  margin-top:16px;padding-top:16px;
+  border-top:1px solid rgba(255,255,255,0.08);
+  font-size:12px;color:var(--text3);
+  font-style:italic;
+}
+
+/* ── PROJECTS ── */
+#projects{background:var(--white);padding:96px 0}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+.proj-card{
+  background:#fff;border:1px solid var(--line);
+  border-radius:var(--r);overflow:hidden;
+  transition:box-shadow 0.3s,transform 0.3s;
+}
+.proj-card:hover{box-shadow:0 12px 40px rgba(37,99,235,0.12);transform:translateY(-4px)}
+.proj-top{
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+  padding:28px;position:relative;
+  min-height:120px;
+  display:flex;align-items:flex-end;
+}
+.proj-top::before{
+  content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+  background:linear-gradient(135deg,rgba(37,99,235,0.2),transparent);
+}
+.proj-icon{
+  position:absolute;top:18px;right:18px;
+  width:54px;height:54px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 24px rgba(0,0,0,0.35);
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.proj-card:hover .proj-icon{transform:scale(1.1) rotate(-4deg);box-shadow:0 10px 32px rgba(0,0,0,0.4)}
+.proj-icon svg{width:28px;height:28px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.proj-name{
+  font-family:var(--serif);font-size:1.2rem;
+  font-weight:700;color:#fff;position:relative;z-index:1;
+  line-height:1.2;
+}
+.proj-body{padding:24px}
+.proj-stack{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.proj-tech{
+  font-family:var(--mono);font-size:11px;
+  background:var(--blue5);color:var(--blue);
+  padding:3px 8px;border-radius:4px;
+  border:1px solid var(--blue4);
+}
+.proj-desc{font-size:13px;color:var(--text2);line-height:1.65;margin-bottom:16px}
+.proj-links{display:flex;gap:10px}
+.proj-link{
+  display:flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:500;
+  text-decoration:none;padding:6px 14px;
+  border-radius:6px;transition:all 0.2s;
+}
+.proj-link.gh{
+  background:var(--navy);color:#fff;
+  border:1px solid var(--navy2);
+}
+.proj-link.gh:hover{background:var(--navy2)}
+.proj-link.live{
+  background:var(--blue5);color:var(--blue);
+  border:1px solid var(--blue4);
+}
+.proj-link.live:hover{background:var(--blue4)}
+
+/* ── EXPERIENCE ── */
+#experience{background:#fff;padding:96px 0}
+.exp-full-timeline{display:flex;flex-direction:column;gap:0;position:relative}
+.exp-full-timeline::before{
+  content:'';position:absolute;left:120px;top:0;bottom:0;
+  width:1px;background:var(--line);
+}
+.exp-full-item{
+  display:grid;grid-template-columns:120px 1fr;
+  gap:40px;align-items:start;
+  padding-bottom:40px;
+}
+.exp-full-date{
+  font-family:var(--mono);font-size:11px;
+  color:var(--text3);text-align:right;
+  padding-top:4px;
+}
+.exp-full-body{
+  background:#fff;border:1px solid var(--line);
+  border-radius:var(--r);padding:24px;
+  position:relative;margin-left:24px;
+}
+.exp-full-body::before{
+  content:'';position:absolute;
+  left:-33px;top:16px;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--blue);border:2px solid #fff;
+  box-shadow:0 0 0 3px var(--blue4);
+}
+.exp-full-role{font-weight:700;font-size:15px;color:var(--text)}
+.exp-full-org{
+  font-size:13px;color:var(--blue);
+  font-weight:500;margin-top:2px;
+}
+.exp-full-loc{font-size:12px;color:var(--text3);margin-top:2px}
+.exp-full-bullets{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:6px}
+.exp-full-bullets li{
+  font-size:13px;color:var(--text2);
+  padding-left:16px;position:relative;line-height:1.6;
+}
+.exp-full-bullets li::before{
+  content:'—';position:absolute;left:0;
+  color:var(--blue3);font-size:11px;
+}
+
+/* ── CERTIFICATIONS ── */
+#certifications{background:var(--blue5);padding:96px 0}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.cert-card{
+  background:#fff;border:1px solid var(--line);
+  border-radius:var(--r);padding:24px;
+  display:flex;flex-direction:column;gap:10px;
+  transition:box-shadow 0.2s,transform 0.2s;
+}
+.cert-card:hover{box-shadow:0 8px 24px rgba(37,99,235,0.1);transform:translateY(-2px)}
+.cert-issuer{
+  font-size:11px;font-weight:600;letter-spacing:1px;
+  text-transform:uppercase;color:var(--text3);
+}
+.cert-name{font-weight:600;font-size:14px;color:var(--text);line-height:1.3}
+.cert-date{font-family:var(--mono);font-size:11px;color:var(--text3)}
+.cert-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  background:var(--blue5);color:var(--blue);
+  font-size:11px;font-weight:500;
+  padding:4px 10px;border-radius:20px;
+  border:1px solid var(--blue4);width:fit-content;
+  text-decoration:none;margin-top:auto;
+}
+.cert-badge:hover{background:var(--blue4)}
+
+/* ── CONTACT ── */
+#contact{background:var(--navy);padding:96px 0}
+#contact .section-eyebrow{color:var(--blue3)}
+#contact .section-title{color:#fff}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.contact-info{display:flex;flex-direction:column;gap:16px}
+.contact-item{
+  display:flex;align-items:center;gap:16px;
+  background:rgba(30,41,59,0.6);
+  border:1px solid rgba(37,99,235,0.2);
+  border-radius:var(--r2);padding:16px 20px;
+  text-decoration:none;transition:border-color 0.2s;
+}
+.contact-item:hover{border-color:var(--blue)}
+.contact-icon{
+  width:40px;height:40px;border-radius:8px;
+  background:rgba(37,99,235,0.15);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.contact-text{}
+.contact-label{font-size:11px;color:var(--text3);letter-spacing:0.5px;margin-bottom:2px}
+.contact-val{font-size:14px;color:#fff;font-weight:500}
+.social-links{display:flex;gap:10px;margin-top:8px;flex-wrap:wrap}
+.social-btn{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(30,41,59,0.6);
+  border:1px solid rgba(37,99,235,0.2);
+  border-radius:var(--r2);padding:10px 16px;
+  text-decoration:none;color:var(--blue3);
+  font-size:13px;font-weight:500;
+  transition:all 0.2s;
+}
+.social-btn:hover{background:rgba(37,99,235,0.15);border-color:var(--blue);color:#fff}
+
+/* contact form */
+.contact-form{display:flex;flex-direction:column;gap:16px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:12px;color:var(--text3);font-weight:500;letter-spacing:0.5px}
+.form-group input,.form-group textarea{
+  background:rgba(30,41,59,0.6);
+  border:1px solid rgba(37,99,235,0.2);
+  border-radius:var(--r2);
+  padding:12px 16px;
+  color:#fff;font-size:14px;font-family:var(--body);
+  outline:none;transition:border-color 0.2s;
+}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--blue)}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-submit{
+  background:var(--blue);color:#fff;
+  border:none;border-radius:var(--r2);
+  padding:14px 28px;font-size:14px;font-weight:600;
+  cursor:pointer;font-family:var(--body);
+  transition:background 0.2s;align-self:flex-start;
+}
+.form-submit:hover{background:var(--blue2)}
+
+/* ── FOOTER ── */
+footer{
+  background:rgba(15,23,42,0.95);
+  border-top:1px solid rgba(37,99,235,0.15);
+  padding:24px 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
+}
+footer p{font-size:12px;color:var(--text3)}
+footer a{color:var(--blue3);text-decoration:none;font-size:12px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:0 20px}
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .mobile-menu{
+    display:none;flex-direction:column;
+    position:fixed;top:64px;left:0;right:0;
+    background:var(--navy);padding:20px;
+    border-bottom:1px solid rgba(37,99,235,0.2);
+    z-index:99;
+  }
+  .mobile-menu.open{display:flex}
+  .mobile-menu a{
+    color:var(--blue3);text-decoration:none;
+    padding:12px 0;font-size:15px;font-weight:500;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+  }
+  .hero-grid{grid-template-columns:1fr;gap:40px;padding:60px 20px}
+  .hero-card{display:none}
+  .about-grid{grid-template-columns:1fr}
+  .research-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .section{padding:64px 20px}
+  .about-inner{padding:0 20px}
+  #about{padding:64px 0}
+  #research{padding:64px 0}
+  #projects{padding:64px 0}
+  #experience{padding:64px 0}
+  #certifications{padding:64px 0}
+  #contact{padding:64px 0}
+  .exp-full-timeline::before{left:80px}
+  .exp-full-item{grid-template-columns:80px 1fr;gap:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Shoumik<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="mailto:sheikhshoumik64@gmail.com">Hire Me</a>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" onclick="toggleMenu()">Home</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#research" onclick="toggleMenu()">Research</a>
+  <a href="#projects" onclick="toggleMenu()">Projects</a>
+  <a href="#experience" onclick="toggleMenu()">Experience</a>
+  <a href="#certifications" onclick="toggleMenu()">Certifications</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">Software Engineer & Researcher</div>
+      <h1 class="hero-name">Sk. Shoumik<br/><span>Haque</span></h1>
+      <div class="hero-role"><span id="typewriter"></span><span class="cursor"></span></div>
+      <p class="hero-bio">
+        Final-year <strong>Software Engineering</strong> student at Daffodil International University with a <strong>CGPA of 3.94/4.00</strong>. Actively researching LLM evaluation for clinical decision support. Passionate about AI-enabled healthcare and building impactful software.
+      </p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="#projects">View Projects</a>
+        <a class="btn-outline" href="#research">My Research</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">3.94<span>/4</span></div>
+          <div class="stat-label">CGPA</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">3<span>+</span></div>
+          <div class="stat-label">Projects</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">4<span>+</span></div>
+          <div class="stat-label">Certifications</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">1<span></span></div>
+          <div class="stat-label">Research Areas</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="hero-card">
+        <div class="card-bar">
+          <div class="dot dot-r"></div>
+          <div class="dot dot-y"></div>
+          <div class="dot dot-g"></div>
+          <span class="card-file">shoumik.profile.json</span>
+        </div>
+        <div class="card-body">
+          <div><span class="c-br">{</span></div>
+          <div>&nbsp;&nbsp;<span class="c-key">"name"</span><span class="c-br">: </span><span class="c-str">"Sk. Shoumik Haque"</span><span class="c-br">,</span></div>
+          <div>&nbsp;&nbsp;<span class="c-key">"role"</span><span class="c-br">: </span><span class="c-str">"Software Engineer"</span><span class="c-br">,</span></div>
+          <div>&nbsp;&nbsp;<span class="c-key">"cgpa"</span><span class="c-br">: </span><span class="c-num">3.94</span><span class="c-br">,</span></div>
+          <div>&nbsp;&nbsp;<span class="c-key">"university"</span><span class="c-br">: </span><span class="c-str">"DIU"</span><span class="c-br">,</span></div>
+          <div>&nbsp;&nbsp;<span class="c-key">"research"</span><span class="c-br">: [</span></div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str">"LLM Evaluation"</span></div>
+          <div>&nbsp;&nbsp;<span class="c-br">],</span></div>
+          <div>&nbsp;&nbsp;<span class="c-key">"stack"</span><span class="c-br">: [</span></div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str">"React"</span><span class="c-br">, </span><span class="c-str">"Firebase"</span><span class="c-br">,</span></div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str">"Java"</span><span class="c-br">, </span><span class="c-str">"Python"</span><span class="c-br">, </span><span class="c-str">"PHP"</span></div>
+          <div>&nbsp;&nbsp;<span class="c-br">],</span></div>
+          <div>&nbsp;&nbsp;<span class="c-key">"available"</span><span class="c-br">: </span><span class="c-fn">true</span></div>
+          <div><span class="c-br">}</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="section-eyebrow">Who I Am</div>
+    <h2 class="section-title">About <span>Me</span></h2>
+    <div class="about-grid">
+      <div class="about-left">
+        <div class="about-avatar" style="overflow:hidden;padding:0;display:block;background:none;">
+          <img src="portfolio_picture.jpg" alt="Sk. Shoumik Haque" style="width:100%;height:100%;object-fit:cover;object-position:center 60% ;border-radius:12px;display:block;"/>
+        </div>
+        <div class="about-contact">
+          <a href="mailto:sheikhshoumik64@gmail.com">
+            <span class="about-contact-icon">✉️</span>sheikhshoumik64@gmail.com
+          </a>
+          <a href="tel:+8801905805093">
+            <span class="about-contact-icon">📞</span>01905805093
+          </a>
+          <a href="#">
+            <span class="about-contact-icon">📍</span>Dhaka, Bangladesh
+          </a>
+          <a href="https://linkedin.com/in/sheikh-shoumik-haque" target="_blank">
+            <span class="about-contact-icon" style="background:#EFF6FF;color:#2563EB">in</span>sheikh-shoumik-haque
+          </a>
+          <a href="https://github.com/shoumiksoul01" target="_blank">
+            <span class="about-contact-icon">⌥</span>shoumiksoul01
+          </a>
+        </div>
+      </div>
+      <div>
+        <p style="color:var(--text2);font-size:15px;line-height:1.8;margin-bottom:28px">
+          I'm a final-year Software Engineering student at Daffodil International University with a passion for building meaningful software and exploring AI-driven research. My academic journey has been defined by consistent academic excellence — maintaining a CGPA of 3.94/4.00 while actively engaging in research, campus leadership, and real-world development projects.
+        </p>
+        <p style="color:var(--text2);font-size:15px;line-height:1.8;margin-bottom:32px">
+          My research focuses on evaluating Large Language Models for clinical decision support in resource-limited healthcare settings. I believe technology, when built thoughtfully, can create meaningful change — especially in healthcare and education.
+        </p>
+        <div class="tabs">
+          <button class="tab-btn active" onclick="switchTab(event,'skills')">Skills</button>
+          <button class="tab-btn" onclick="switchTab(event,'experience')">Experience</button>
+          <button class="tab-btn" onclick="switchTab(event,'education')">Education</button>
+        </div>
+        <div class="tab-content active" id="tab-skills">
+          <div class="skill-groups">
+            <div class="skill-group-row">
+              <span class="skill-group-label">Programming</span>
+              <div class="skill-tags">
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">PHP</span>
+              </div>
+            </div>
+            <div class="skill-group-row">
+              <span class="skill-group-label">Web</span>
+              <div class="skill-tags">
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">HTML</span>
+                <span class="skill-tag">CSS</span>
+                <span class="skill-tag">Firebase</span>
+                <span class="skill-tag">Laravel</span>
+              </div>
+            </div>
+            <div class="skill-group-row">
+              <span class="skill-group-label">ML / AI</span>
+              <div class="skill-tags">
+                <span class="skill-tag ml">XGBoost</span>
+                <span class="skill-tag ml">SHAP</span>
+                <span class="skill-tag ml">Scikit-learn</span>
+              </div>
+            </div>
+            <div class="skill-group-row">
+              <span class="skill-group-label">AI Tools</span>
+              <div class="skill-tags">
+                <span class="skill-tag ai">Claude</span>
+                <span class="skill-tag ai">ChatGPT</span>
+                <span class="skill-tag ai">Gemini</span>
+                <span class="skill-tag ai">Groq</span>
+                <span class="skill-tag ai">Perplexity</span>
+              </div>
+            </div>
+            <div class="skill-group-row">
+              <span class="skill-group-label">Database</span>
+              <div class="skill-tags">
+                <span class="skill-tag">MySQL</span>
+                <span class="skill-tag">Firebase DB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-content" id="tab-experience">
+          <div class="exp-timeline">
+            <div class="exp-item">
+              <span class="exp-date">Dec 2025<br/>May 2026</span>
+              <div class="exp-body">
+                <div class="exp-role">Junior IT Officer</div>
+                <div class="exp-org">Red Network Ltd. · Remote</div>
+                <div class="exp-desc">Developed web-based software solutions using React and JavaScript. Assisted in database design and backend logic using Java and MySQL for corporate clients.</div>
+              </div>
+            </div>
+            <div class="exp-item">
+              <span class="exp-date">Jan 2025<br/>Jan 2026</span>
+              <div class="exp-body">
+                <div class="exp-role">Campus Ambassador</div>
+                <div class="exp-org">CareTutors</div>
+                <div class="exp-desc">Coordinated CareTutors booth at DIU Job Utshab, directly engaging 200+ prospective students. Led campus outreach via social media campaigns.</div>
+              </div>
+            </div>
+            <div class="exp-item">
+              <span class="exp-date">2024<br/>Present</span>
+              <div class="exp-body">
+                <div class="exp-role">Executive Member</div>
+                <div class="exp-org">DIU Data Science Club</div>
+                <div class="exp-desc">Organized workshops and peer learning sessions on data science and AI tools for department members.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-content" id="tab-education">
+          <div class="edu-list">
+            <div class="edu-item top">
+              <div class="edu-inst">Daffodil International University</div>
+              <div class="edu-deg">B.Sc. in Software Engineering · 4th Year</div>
+              <div class="edu-meta">2023 – Present · Dhaka, Bangladesh</div>
+              <div class="gpa-pill">⭐ CGPA 3.94 / 4.00</div>
+            </div>
+            <div class="edu-item">
+              <div class="edu-inst">Govt. Sundarban Adarsha College</div>
+              <div class="edu-deg">HSC · Science</div>
+              <div class="edu-meta">2019 – 2021 · Khulna · GPA 5.00 / 5.00</div>
+            </div>
+            <div class="edu-item">
+              <div class="edu-inst">Khulna Zilla School</div>
+              <div class="edu-deg">SSC · Science</div>
+              <div class="edu-meta">2011 – 2019 · Khulna · GPA 5.00 / 5.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="section">
+    <div class="section-eyebrow">Academic Work</div>
+    <h2 class="section-title">Research <span>Areas</span></h2>
+    <div class="research-grid">
+      <div class="research-card">
+        <div class="research-status">ONGOING · 2026</div>
+        <div class="research-title">LLM Evaluation for Clinical Decision Support</div>
+        <div class="research-desc">
+          Comparing free LLMs — Llama 3.3-70B via Groq and Gemini Flash — against paid alternatives like GPT-4o mini for clinical decision support in resource-limited healthcare settings. Applying XGBoost for disease risk prediction and SHAP for model explainability using the IMPACT scoring framework.
+        </div>
+        <div class="research-tags">
+          <span class="research-tag">LLM Evaluation</span>
+          <span class="research-tag">XGBoost</span>
+          <span class="research-tag">SHAP</span>
+          <span class="research-tag">Healthcare AI</span>
+          <span class="research-tag">Groq API</span>
+        </div>
+        
+      </div>
+      
+        <div class="research-sup">Department of Software Engineering · DIU · 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section">
+    <div class="section-eyebrow">What I've Built</div>
+    <h2 class="section-title">Featured <span>Projects</span></h2>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:linear-gradient(135deg,#6366F1,#8B5CF6)"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+          <div class="proj-name">Exam Ease</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-stack">
+            <span class="proj-tech">Java</span>
+            <span class="proj-tech">React</span>
+            <span class="proj-tech">System Design</span>
+            <span class="proj-tech">UML</span>
+          </div>
+          <div class="proj-desc">Centralized academic scheduling system with role-based dashboards for Student, Teacher, and Admin. Led a team of 3 with full system documentation: Use Case, ER, Class, Activity, Sequence, and DFD diagrams following OBE principles. Capstone project supervised by Md Shohel Arman, DIU.</div>
+          <div class="proj-links">
+            <a class="proj-link gh" href="https://github.com/shoumiksoul01/Exam-Ease" target="_blank">⌥ GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:linear-gradient(135deg,#EC4899,#F43F5E)"><svg viewBox="0 0 24 24"><path d="M15 10l4.553-2.069A1 1 0 0121 8.82V15.18a1 1 0 01-1.447.89L15 14M3 8a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/></svg></div>
+          <div class="proj-name">Fourth Wall</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-stack">
+            <span class="proj-tech">React</span>
+            <span class="proj-tech">Firebase</span>
+            <span class="proj-tech">JavaScript</span>
+            <span class="proj-tech">Vite</span>
+          </div>
+          <div class="proj-desc">Full-stack web application for managing and organizing user-generated movie dialogues. Features Google Authentication, admin moderation panel, favourites system, and responsive UI with client-side state management. Deployed on Firebase Hosting.</div>
+          <div class="proj-links">
+            <a class="proj-link gh" href="https://github.com/shoumiksoul01/Fourth-Wall" target="_blank">⌥ GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:linear-gradient(135deg,#EF4444,#F97316)"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+          <div class="proj-name">Blood Bank System</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-stack">
+            <span class="proj-tech">Java</span>
+            <span class="proj-tech">MySQL</span>
+            <span class="proj-tech">OOP</span>
+          </div>
+          <div class="proj-desc">Donor–patient matching system with authentication, eligibility validation, and real-time availability tracking. Designed modular backend using OOP principles with blood group–based filtering to optimize donor search efficiency in emergency scenarios.</div>
+          <div class="proj-links">
+            <a class="proj-link gh" href="https://github.com/shoumiksoul01" target="_blank">⌥ GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section">
+    <div class="section-eyebrow">Work History</div>
+    <h2 class="section-title">Experience & <span>Leadership</span></h2>
+    <div class="exp-full-timeline">
+      <div class="exp-full-item">
+        <div class="exp-full-date">Dec 2025<br/>May 2026</div>
+        <div class="exp-full-body">
+          <div class="exp-full-role">Junior IT Officer</div>
+          <div class="exp-full-org">Red Network Ltd.</div>
+          <div class="exp-full-loc">📍 Remote · Khulna, Bangladesh</div>
+          <ul class="exp-full-bullets">
+            <li>Developed web-based software solutions for client requirements using React and JavaScript.</li>
+            <li>Assisted in designing database schemas and backend logic using Java and MySQL.</li>
+            <li>Contributed to custom software deployment and integration for corporate clients.</li>
+            <li>Supported cloud storage service infrastructure aligned with AWS security practices.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-full-item">
+        <div class="exp-full-date">Jan 2025<br/>Jan 2026</div>
+        <div class="exp-full-body">
+          <div class="exp-full-role">Campus Ambassador</div>
+          <div class="exp-full-org">CareTutors</div>
+          <div class="exp-full-loc">📍 Daffodil International University, Dhaka</div>
+          <ul class="exp-full-bullets">
+            <li>Coordinated CareTutors booth at DIU Job Utshab, directly engaging 200+ prospective students.</li>
+            <li>Promoted e-learning platform across campus via targeted social media and peer outreach campaigns.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp-full-item">
+        <div class="exp-full-date">2024<br/>Present</div>
+        <div class="exp-full-body">
+          <div class="exp-full-role">Executive Member</div>
+          <div class="exp-full-org">DIU Data Science Club</div>
+          <div class="exp-full-loc">📍 Daffodil International University, Dhaka</div>
+          <ul class="exp-full-bullets">
+            <li>Organized workshops and peer learning sessions on data science and AI tools.</li>
+            <li>Supported AI literacy and awareness initiatives across the Software Engineering department.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section">
+    <div class="section-eyebrow">Credentials</div>
+    <h2 class="section-title">Certifi<span>cations</span></h2>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-issuer">Amazon Web Services</div>
+        <div class="cert-name">AWS Academy Graduate — Cloud Security Foundations</div>
+        <div class="cert-date">April 2026 · 20 Hours</div>
+        <a class="cert-badge" href="https://www.credly.com/go/r64V8zmr" target="_blank">↗ Verify on Credly</a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-issuer">Simplilearn</div>
+        <div class="cert-name">Getting Started with Machine Learning Algorithms</div>
+        <div class="cert-date">April 2026</div>
+        <a class="cert-badge" href="https://simpli-web.app.link/e/dHwlssMUQ3b" target="_blank">↗ Verify Certificate</a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-issuer">CodeSignal</div>
+        <div class="cert-name">PHP Laravel Basics</div>
+        <div class="cert-date">April 2026</div>
+        <a class="cert-badge" href="https://codesignal.com/learn/certificates/cmnbw5547004nju04fekws9pb/courses/664" target="_blank">↗ Verify Certificate</a>
+      </div>
+      <div class="cert-card">
+        <div class="cert-issuer">CodeSignal</div>
+        <div class="cert-name">Web Development with HTML, CSS & JavaScript</div>
+        <div class="cert-date">April 2026</div>
+        <a class="cert-badge" href="https://codesignal.com/learn/certificates/cmnbw5547004nju04fekws9pb/courses/60" target="_blank">↗ Verify Certificate</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section">
+    <div class="section-eyebrow">Get In Touch</div>
+    <h2 class="section-title">Contact <span>Me</span></h2>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-info">
+          <a class="contact-item" href="mailto:sheikhshoumik64@gmail.com">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-text">
+              <div class="contact-label">EMAIL</div>
+              <div class="contact-val">sheikhshoumik64@gmail.com</div>
+            </div>
+          </a>
+          <a class="contact-item" href="tel:+8801905805093">
+            <div class="contact-icon">📞</div>
+            <div class="contact-text">
+              <div class="contact-label">PHONE</div>
+              <div class="contact-val">01905805093</div>
+            </div>
+          </a>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-text">
+              <div class="contact-label">LOCATION</div>
+              <div class="contact-val">Dhaka, Bangladesh</div>
+            </div>
+          </div>
+        </div>
+        <div class="social-links" style="margin-top:24px">
+          <a class="social-btn" href="https://linkedin.com/in/sheikh-shoumik-haque" target="_blank">in LinkedIn</a>
+          <a class="social-btn" href="https://github.com/shoumiksoul01" target="_blank">⌥ GitHub</a>
+          <a class="social-btn" href="mailto:sheikhshoumik64@gmail.com">✉ Email</a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-group">
+          <label>YOUR NAME</label>
+          <input type="text" placeholder="John Doe"/>
+        </div>
+        <div class="form-group">
+          <label>EMAIL ADDRESS</label>
+          <input type="email" placeholder="john@example.com"/>
+        </div>
+        <div class="form-group">
+          <label>MESSAGE</label>
+          <textarea placeholder="Hello Shoumik, I'd like to discuss..."></textarea>
+        </div>
+        <button class="form-submit" onclick="handleSubmit()">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Sk. Shoumik Haque · All Rights Reserved</p>
+  <a href="mailto:sheikhshoumik64@gmail.com">sheikhshoumik64@gmail.com</a>
+</footer>
+
+<script>
+// Typewriter
+const roles = [
+  "Software Engineer",
+  "React Developer",
+  "ML Researcher",
+  "AI Enthusiast",
+  "Aspiring Educator"
+];
+let ri = 0, ci = 0, deleting = false;
+const tw = document.getElementById('typewriter');
+function type() {
+  const current = roles[ri];
+  if (!deleting) {
+    tw.textContent = current.slice(0, ++ci);
+    if (ci === current.length) { deleting = true; setTimeout(type, 1800); return; }
+  } else {
+    tw.textContent = current.slice(0, --ci);
+    if (ci === 0) { deleting = false; ri = (ri + 1) % roles.length; }
+  }
+  setTimeout(type, deleting ? 60 : 100);
+}
+type();
+
+// Tabs
+function switchTab(e, id) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  e.target.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+}
+
+// Mobile menu
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// Smooth close mobile menu on nav click
+document.querySelectorAll('.mobile-menu a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.remove('open');
+  });
+});
+
+// Contact form
+function handleSubmit() {
+  alert('Thanks for reaching out! This is a static portfolio — please email sheikhshoumik64@gmail.com directly.');
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'translateY(0)'; }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.proj-card, .research-card, .cert-card, .exp-full-body').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
+HTMLEOF
+echo "Done — $(wc -l < /home/claude/index.html) lines"
