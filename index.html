@@ -1100,6 +1100,184 @@ document.querySelectorAll('.proj-card, .research-card, .cert-card, .exp-full-bod
   observer.observe(el);
 });
 </script>
+
+<!-- Portfolio Chat Widget -->
+<style>
+  #chat-widget {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  #chat-bubble {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #2563EB;
+    color: #fff;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  }
+
+  #chat-panel {
+    display: none;
+    position: absolute;
+    bottom: 72px;
+    right: 0;
+    width: 340px;
+    max-height: 480px;
+    background: #0F172A;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    flex-direction: column;
+  }
+
+  #chat-panel.open {
+    display: flex;
+  }
+
+  #chat-header {
+    background: #2563EB;
+    color: #fff;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+  }
+
+  #chat-close {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  #chat-messages {
+    flex: 1;
+    padding: 12px 16px;
+    overflow-y: auto;
+    color: #E2E8F0;
+    font-size: 14px;
+    max-height: 340px;
+  }
+
+  .chat-msg {
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .chat-msg.user {
+    color: #93C5FD;
+    font-weight: 600;
+  }
+
+  .chat-msg.bot {
+    color: #E2E8F0;
+  }
+
+  #chat-form {
+    display: flex;
+    border-top: 1px solid #1E293B;
+  }
+
+  #chat-input {
+    flex: 1;
+    padding: 12px;
+    background: #1E293B;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+  }
+
+  #chat-send {
+    background: #2563EB;
+    color: #fff;
+    border: none;
+    padding: 0 16px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+</style>
+
+<div id="chat-widget">
+  <button id="chat-bubble" aria-label="Open chat">💬</button>
+
+  <div id="chat-panel">
+    <div id="chat-header">
+      <span>Ask me about Shoumik</span>
+      <button id="chat-close" aria-label="Close chat">×</button>
+    </div>
+
+    <div id="chat-messages"></div>
+
+    <form id="chat-form">
+      <input type="text" id="chat-input" placeholder="Type a question..." autocomplete="off" />
+      <button type="submit" id="chat-send">Send</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  const WORKER_URL = "https://portfolio-rag.sheikhshoumik64.workers.dev";
+
+  const bubble = document.getElementById("chat-bubble");
+  const panel = document.getElementById("chat-panel");
+  const closeBtn = document.getElementById("chat-close");
+  const form = document.getElementById("chat-form");
+  const input = document.getElementById("chat-input");
+  const messages = document.getElementById("chat-messages");
+
+  bubble.addEventListener("click", () => {
+    panel.classList.toggle("open");
+  });
+
+  closeBtn.addEventListener("click", () => {
+    panel.classList.remove("open");
+  });
+
+  function addMessage(text, sender) {
+    const div = document.createElement("div");
+    div.className = "chat-msg " + sender;
+    div.textContent = (sender === "user" ? "You: " : "") + text;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const query = input.value.trim();
+    if (!query) return;
+
+    addMessage(query, "user");
+    input.value = "";
+    input.disabled = true;
+
+    try {
+      const res = await fetch(WORKER_URL + "/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query }),
+      });
+      const data = await res.json();
+      addMessage(data.answer, "bot");
+    } catch (err) {
+      addMessage("Sorry, something went wrong.", "bot");
+    } finally {
+      input.disabled = false;
+      input.focus();
+    }
+  });
+</script>
+
 </body>
 </html>
 HTMLEOF
